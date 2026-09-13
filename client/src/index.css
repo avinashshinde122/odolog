@@ -1,0 +1,52 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  body {
+    font-variant-numeric: tabular-nums;
+  }
+}
+
+@layer components {
+  .field-label {
+    @apply block text-xs font-semibold text-ink-muted uppercase tracking-wide mb-1.5;
+  }
+  .field-input {
+    @apply w-full rounded-lg border border-line bg-surface px-3 py-2.5 text-sm text-ink placeholder:text-ink-muted/70 focus:outline-none focus:ring-2 focus:ring-accent;
+  }
+  .btn-primary {
+    @apply w-full rounded-lg bg-accent text-white font-semibold text-sm py-3 disabled:opacity-60;
+  }
+  .btn-ghost {
+    @apply w-full rounded-lg border border-line text-ink-muted font-medium text-sm py-2.5;
+  }
+}
+
+/* Physical object, not a themed one — an Indian RTO plate looks the same regardless of app theme. */
+.plate {
+  display: inline-flex;
+  align-items: stretch;
+  border-radius: 3px;
+  overflow: hidden;
+  border: 1.5px solid #17181c;
+  box-shadow: 0 1px 0 rgba(0, 0, 0, 0.15);
+}
+.plate-strip {
+  background: #1a3d8f;
+  color: #fff;
+  font-size: 6px;
+  font-weight: 700;
+  writing-mode: vertical-rl;
+  padding: 2px 1.5px;
+  letter-spacing: 0.02em;
+}
+.plate-num {
+  background: #fff;
+  color: #111;
+  font-family: 'IBM Plex Mono', monospace;
+  font-weight: 600;
+  font-size: 11.5px;
+  padding: 2.5px 6px;
+  letter-spacing: 0.03em;
+}

@@ -8,10 +8,14 @@ import { requireAuth } from '../middleware/requireAuth.js';
 
 export const authRouter = Router();
 
+const isProduction = process.env.NODE_ENV === 'production';
 const cookieOptions = {
   httpOnly: true,
-  sameSite: 'lax',
-  secure: process.env.NODE_ENV === 'production',
+  // Frontend and backend are on different domains in production (Vercel/Render), so the
+  // session cookie only reaches cross-site fetch requests with SameSite=None — which in
+  // turn requires Secure. Locally both run on "localhost" (same-site), where Lax is enough.
+  sameSite: isProduction ? 'none' : 'lax',
+  secure: isProduction,
   maxAge: 180 * 24 * 60 * 60 * 1000, // 180 days — refresh tokens don't expire on their own
   path: '/',
 };
